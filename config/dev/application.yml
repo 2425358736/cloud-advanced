@@ -1,10 +1,3 @@
-spring:
-  application:
-    name: provider-service
-
-server:
-  port: 5003
-
 management:
   endpoints:
     web:
