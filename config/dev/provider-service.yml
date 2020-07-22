@@ -1,17 +1,9 @@
 spring:
   application:
-    name: config-service
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/2425358736/cloud-advanced
-          search-paths: config/dev
-          username:
-          password:
+    name: provider-service
 
 server:
-  port: 5005
+  port: 5003
 
 management:
   endpoints:

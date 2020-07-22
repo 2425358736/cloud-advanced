@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      name: provider-service
+      label: master
+      uri: http://localhost:5005
