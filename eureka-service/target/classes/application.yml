@@ -1,0 +1,40 @@
+## 高可用配置 相互注册
+---
+spring:
+  profiles: eureka-1
+  application:
+    name: eureka-1
+
+server:
+  port: 5000
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.1.25:5001/eureka
+  server:
+    #关闭eureka自我保护机制，修改检查失效服务的时间
+    enableSelfPreservation: false
+    eviction-interval-timer-in-ms: 10000
+
+
+---
+
+spring:
+  profiles: eureka-2
+  application:
+    name: eureka-2
+server:
+  port: 5001
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.1.25:5000/eureka
+  server:
+    #关闭eureka自我保护机制，修改检查失效服务的时间
+    enableSelfPreservation: false
+    eviction-interval-timer-in-ms: 10000

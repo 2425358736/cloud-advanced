@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: consumer-service
+server:
+  port: 5002
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # refresh,health,info,beans,conditions,metrics,loggers
+  endpoint:
+    health:
+      show-details: always
+
+
+
+
+info:
+  developer: 刘志强
+  phone: 18562551864
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address} :${server.port}
+    metadata-map:
+      user.name: admin
+      user.password: 123456
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.1.25:5001/eureka/,http://192.168.1.25:5000/eureka/ # 防止注册中心崩溃，向两个注册中心注册
+
+# 开启feign熔断
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+ribbon:
+  ReadTimeout: 10000   #负载均衡超时时间，默认值5000
+  ConnectTimeout: 10000 #ribbon请求连接的超时时间，默认值2000
