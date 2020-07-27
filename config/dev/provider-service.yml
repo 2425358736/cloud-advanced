@@ -3,4 +3,4 @@ spring:
     name: provider-service
 
 server:
-  port: 5009
+  port: 5008
