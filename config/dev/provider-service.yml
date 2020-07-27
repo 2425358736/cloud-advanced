@@ -3,7 +3,7 @@ spring:
     name: provider-service
 
 server:
-  port: 5008
+  port: 5003
 
 info:
   developer: 刘志强2

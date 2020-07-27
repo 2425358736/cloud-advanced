@@ -5,6 +5,19 @@ spring:
     user:
       name: admin
       password: 123456
+      roles: admin
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # refresh,health,info
+  endpoint:
+    health:
+      show-details: always
+
 server:
   port: 5004
 
