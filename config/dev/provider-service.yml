@@ -4,3 +4,7 @@ spring:
 
 server:
   port: 5008
+
+info:
+  developer: 刘志强
+  phone: 18562551864
