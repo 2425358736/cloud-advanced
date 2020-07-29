@@ -14,7 +14,10 @@ spring:
           # StripPrefix=1，否则访问服务时会带上consumer
           filters:
             - StripPrefix=1
-
+            - name: Hystrix
+                args:
+                  name: default
+                  fallbackUri: forward:/defaultFallback
 
 server:
   port: 5007
