@@ -45,3 +45,9 @@ logging:
 info:
   developer: 刘志强2
   phone: 18562551864
+
+#mybatis 配置信息
+mybatis:
+  type-aliases-package: com.cloud.provider.domain
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml
