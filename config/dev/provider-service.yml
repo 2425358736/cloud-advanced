@@ -1,9 +1,46 @@
 spring:
   application:
     name: provider-service
+  #druid数据源相关配置配置
+  datasource:
+    url: jdbc:mysql://123.206.19.217:3306/base_data?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: lzq199528
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #连接池的配置信息
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    useGlobalDataSourceStat: true
 
 server:
   port: 5003
+seata:
+  tx-service-group: my_test_tx_group
+  service:
+    grouplist: 123.206.19.217:8091
+
+logging:
+  level:
+    io:
+      seata: info
+      samples:
+        account:
+          persistence:
+            AccountMapper: debug
 
 info:
   developer: 刘志强2
