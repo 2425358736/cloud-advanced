@@ -1,11 +1,8 @@
-package com.cloud.consumer.config.security;
+package com.cloud.consumer.config.security.model;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class User implements UserDetails {
     private String userName;
     private String password;
 
-    private String[] authorityList;
+    private List<Auth> list;
 
     public String getUserName() {
         return userName;
@@ -37,17 +34,17 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public void setAuthorityList(String[] authorityList) {
-        this.authorityList = authorityList;
+    public List<Auth> getList() {
+        return list;
+    }
+
+    public void setList(List<Auth> list) {
+        this.list = list;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> list = new ArrayList<>();
-        for (String s : authorityList) {
-            list.add(new SimpleGrantedAuthority(s));
-        }
-        return list;
+        return this.list;
     }
 
     @Override

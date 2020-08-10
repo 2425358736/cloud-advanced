@@ -1,13 +1,12 @@
 package com.cloud.consumer.config.security;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import com.cloud.consumer.config.security.model.Auth;
+import com.cloud.consumer.config.security.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -22,10 +21,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = new User();
         user.setUserName(userName);
         user.setPassword("123456");
-        List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
-        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("admin");
-        authorityList.add((SimpleGrantedAuthority) grantedAuthority);
-        user.setAuthorityList(new String[]{"admin"});
+        List<Auth> list = new ArrayList<>();
+        list.add(new Auth("admin"));
+        user.setList(list);
         return user;
     }
 }

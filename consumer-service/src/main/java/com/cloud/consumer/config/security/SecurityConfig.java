@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
@@ -34,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password(new BCryptPasswordEncoder().encode("123456"))
                 .roles("ROOT");
-       auth.userDetailsService(userDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance());
+        auth.userDetailsService(userDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
     @Override
@@ -54,13 +56,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // /authenticated 下的请求允许认证过的用户访问
                 .antMatchers("/authenticated/**").authenticated()
                 // 其余的请求允许所有用户无条件访问
-                .antMatchers("/**","/").permitAll()
+                 .antMatchers("/login").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                    .csrf().disable();
+                .csrf().disable();
     }
 
+    @Bean
     @Override
-    @Bean(name = "authenticationManagerBean")
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }

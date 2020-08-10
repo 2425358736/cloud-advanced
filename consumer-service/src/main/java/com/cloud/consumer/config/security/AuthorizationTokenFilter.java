@@ -1,5 +1,6 @@
 package com.cloud.consumer.config.security;
 
+import com.cloud.consumer.config.security.model.User;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;

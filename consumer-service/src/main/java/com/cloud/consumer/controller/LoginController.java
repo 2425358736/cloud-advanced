@@ -1,17 +1,13 @@
 package com.cloud.consumer.controller;
 
-import com.cloud.consumer.config.security.TokenMap;
-import com.cloud.consumer.config.security.User;
+import com.cloud.consumer.config.security.model.User;
 import com.cloud.consumer.config.security.UserDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
@@ -23,6 +19,7 @@ import java.util.UUID;
  * @date 2020/7/21 10:53
  */
 @RestController
+@RequestMapping("/")
 @CrossOrigin
 @Slf4j
 public class LoginController {
@@ -62,4 +59,23 @@ public class LoginController {
     private String aa() {
         return ":aaa";
     }
+
+    @GetMapping("/user/aa")
+    private String userAA() {
+        return ":aaa";
+    }
+
+    @GetMapping("/member/aa")
+    @PreAuthorize("hasAnyAuthority('member')")
+    private String bb() {
+        return ":aa";
+    }
+
+    @GetMapping("/member/bb")
+    @PreAuthorize("hasAnyAuthority('admin')")
+    private String cc() {
+        return ":bb";
+    }
+
+
 }
