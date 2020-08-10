@@ -12,15 +12,15 @@ import java.util.Map;
 @Data
 public class TokenMap {
 
-    private static volatile TokenMap tokenMap = new TokenMap();
-
-    private TokenMap(){
-        this.map = new HashMap<>();
-    }
-
-    private Map<String, User> map;
-
-    public static synchronized TokenMap getTokenMap() {
-        return tokenMap;
-    }
+//    private static volatile TokenMap tokenMap = new TokenMap();
+//
+//    private TokenMap(){
+//        this.map = new HashMap<>();
+//    }
+//
+//    private Map<String, User> map;
+//
+//    public static synchronized TokenMap getTokenMap() {
+//        return tokenMap;
+//    }
 }

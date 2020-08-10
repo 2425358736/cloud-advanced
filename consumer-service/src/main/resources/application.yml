@@ -1,6 +1,23 @@
 spring:
   application:
     name: consumer-service
+  #redis配置数据
+  redis:
+    host: 123.206.19.217
+    port: 6379
+    database: 1
+    password:
+    jedis:
+      pool:
+        # 可以在给定的池中分配的最大连接数
+        maxActive: 8
+        # 池中的“空闲”连接的最大数目
+        maxIdle: 0
+        # 池中要维护的最小空闲连接数
+        minIdle: 8
+    ssl: false
+    timeout: 5000
+
 server:
   port: 5002
 
@@ -45,3 +62,5 @@ hystrix:
 ribbon:
   ReadTimeout: 10000   #负载均衡超时时间，默认值5000
   ConnectTimeout: 10000 #ribbon请求连接的超时时间，默认值2000
+
+

@@ -5,6 +5,9 @@ import com.cloud.consumer.config.security.User;
 import com.cloud.consumer.config.security.UserDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +29,11 @@ public class LoginController {
 
     private final UserDetailsServiceImpl userDetailsService;
 
-    public LoginController(UserDetailsServiceImpl userDetailsService) {
+    private final RedisTemplate redisTemplate;
+
+    public LoginController(UserDetailsServiceImpl userDetailsService, @Qualifier("redisTemplateJdk") RedisTemplate redisTemplate) {
         this.userDetailsService = userDetailsService;
+        this.redisTemplate = redisTemplate;
     }
 
     /**
@@ -42,7 +48,8 @@ public class LoginController {
         User user = userDetailsService.loadUserByUsername(userName);
         if (StringUtils.equals(user.getPassword(),password)) {
             String token = UUID.randomUUID().toString().replaceAll("-", "");
-            TokenMap.getTokenMap().getMap().put(token, user);
+//            TokenMap.getTokenMap().getMap().put(token, user);
+            redisTemplate.opsForValue().set(token,user);
             map.put("state","200");
             map.put("token",token);
         } else {
