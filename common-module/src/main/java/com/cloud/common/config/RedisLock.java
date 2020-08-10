@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author 刘志强
  * @date 2020/8/10 11:36
+ * redis分布式锁
  */
 @Component
 public class RedisLock {
