@@ -1,5 +1,6 @@
 package com.cloud.provider.service.impl;
 
+import com.cloud.common.core.result.AjaxResult;
 import com.cloud.provider.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +21,12 @@ public class UserImpl implements UserService {
     }
 
     @Override
-    public Map<String, String> getUserInfo() {
+    public AjaxResult getUserInfo() {
         Map<String,String> map = new HashMap<>(3);
         String authorization = httpServletRequest.getHeader("Authorization");
         map.put("authorization",authorization);
         map.put("state","200");
         map.put("作者","刘志强");
-        return map;
+        return AjaxResult.successData(map);
     }
 }

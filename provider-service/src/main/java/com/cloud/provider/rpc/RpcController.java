@@ -1,13 +1,11 @@
 package com.cloud.provider.rpc;
 
+import com.cloud.common.core.result.AjaxResult;
 import com.cloud.provider.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 /**
  * @author 刘志强
@@ -25,7 +23,7 @@ public class RpcController {
     }
 
     @GetMapping("getUserInfo")
-    public Map<String,String> getUserInfo() {
+    public AjaxResult getUserInfo() {
         return userService.getUserInfo();
     }
 }
