@@ -1,0 +1,16 @@
+package com.cloud.common.core.domain;
+
+
+import lombok.Data;
+
+/**
+ * @author admin
+ */
+@Data
+public class AuthToken {
+    private String access_token;
+    private String token_type;
+    private String refresh_token;
+    private String expires_in;
+    private String scope;
+}

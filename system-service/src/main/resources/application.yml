@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: system-service
+  #redis配置数据
+  redis:
+    host: 123.206.19.217
+    port: 6379
+    database: 2
+    password:
+    jedis:
+      pool:
+        # 可以在给定的池中分配的最大连接数
+        maxActive: 8
+        # 池中的“空闲”连接的最大数目
+        maxIdle: 0
+        # 池中要维护的最小空闲连接数
+        minIdle: 8
+    ssl: false
+    timeout: 5000
+
+server:
+  port: 5009
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # refresh,health,info,beans,conditions,metrics,loggers
+  endpoint:
+    health:
+      show-details: always
+
+
+
+
+info:
+  developer: 刘志强
+  phone: 18562551864
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address} :${server.port}
+    metadata-map:
+      user.name: admin
+      user.password: 123456
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.1.25:5001/eureka/,http://192.168.1.25:5000/eureka/ # 防止注册中心崩溃，向两个注册中心注册
+
+# 开启feign熔断
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+ribbon:
+  ReadTimeout: 10000   #负载均衡超时时间，默认值5000
+  ConnectTimeout: 10000 #ribbon请求连接的超时时间，默认值2000
+
+
