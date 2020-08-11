@@ -1,5 +1,6 @@
 package com.cloud.auth.config;
 
+import com.cloud.auth.config.exception.CustomWebResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -49,9 +50,16 @@ public class Auth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+                // 指定token存储位置
         endpoints.tokenStore(tokenStore)
+                // 指定认证管理器
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                // 用户账号密码认证
+                .userDetailsService(userDetailsService)
+                // 是否重复使用 refresh_token
+                .reuseRefreshTokens(false)
+                // 自定义异常处理
+                .exceptionTranslator(new CustomWebResponseExceptionTranslator());;
     }
 
     @Override

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author admin
  */
-@FeignClient(value = "auth-service")
+@FeignClient(value = "auth-service", fallback = AuthServiceImpl.class)
 public interface AuthService {
 
     /**
