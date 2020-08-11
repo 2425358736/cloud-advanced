@@ -59,7 +59,7 @@ public class Auth2Config extends AuthorizationServerConfigurerAdapter {
                 // 是否重复使用 refresh_token
                 .reuseRefreshTokens(false)
                 // 自定义异常处理
-                .exceptionTranslator(new CustomWebResponseExceptionTranslator());;
+                .exceptionTranslator(new CustomWebResponseExceptionTranslator());
     }
 
     @Override
