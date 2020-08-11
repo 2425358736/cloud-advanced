@@ -1,9 +1,9 @@
 package com.cloud.consumer.rpc.impl;
 
+import com.cloud.common.core.result.AjaxResult;
+import com.cloud.common.core.result.HttpStatus;
 import com.cloud.consumer.rpc.RpcProviderService;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,10 +13,7 @@ import java.util.Map;
 @Component
 public class RpcProviderImpl implements RpcProviderService {
     @Override
-    public Map<String, String> getUserInfo(String authorization) {
-        Map<String,String> map = new HashMap<>(2);
-        map.put("state","500");
-        map.put("msg","下游服务调用失败");
-        return map;
+    public AjaxResult<Map<String,String>> getUserInfo(String authorization) {
+        return AjaxResult.error(HttpStatus.ERROR, "下游服务器调用失败");
     }
 }

@@ -1,4 +1,4 @@
-package com.cloud.common.config;
+package com.cloud.common.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

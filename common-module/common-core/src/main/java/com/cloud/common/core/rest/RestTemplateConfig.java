@@ -1,4 +1,4 @@
-package com.cloud.common.config;
+package com.cloud.common.core.rest;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

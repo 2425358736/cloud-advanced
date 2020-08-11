@@ -1,6 +1,7 @@
 package com.cloud.consumer.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.common.core.result.AjaxResult;
 import com.cloud.consumer.rpc.RpcProviderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
@@ -37,13 +38,13 @@ public class ConsumerController {
     }
 
     @GetMapping("/getConsumer")
-    public Map<String,String> getConsumer() {
+    public AjaxResult<Map<String,String>> getConsumer() {
         String authorization = httpServletRequest.getHeader("Authorization");
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.add("Authorization", "123456");
-        HttpEntity<String> requestEntity = new HttpEntity<>(null, requestHeaders);
-        ResponseEntity<Map> entity = restTemplate.exchange("http://provider-service/rpc/getUserInfo", HttpMethod.GET,requestEntity,Map.class);
-        log.info(JSONObject.toJSONString(entity));
+//        HttpHeaders requestHeaders = new HttpHeaders();
+//        requestHeaders.add("Authorization", "123456");
+//        HttpEntity<String> requestEntity = new HttpEntity<>(null, requestHeaders);
+//        ResponseEntity<AjaxResult> entity = restTemplate.exchange("http://provider-service/rpc/getUserInfo", HttpMethod.GET,requestEntity,AjaxResult.class);
+//        log.info(JSONObject.toJSONString(entity.getBody()));
         return rpcProviderService.getUserInfo(authorization);
     }
 

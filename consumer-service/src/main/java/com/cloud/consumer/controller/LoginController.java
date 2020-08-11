@@ -2,6 +2,7 @@ package com.cloud.consumer.controller;
 
 import com.cloud.consumer.config.security.model.User;
 import com.cloud.consumer.config.security.UserDetailsServiceImpl;
+import com.cloud.common.core.result.AjaxResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +20,6 @@ import java.util.UUID;
  * @date 2020/7/21 10:53
  */
 @RestController
-@RequestMapping("/")
 @CrossOrigin
 @Slf4j
 public class LoginController {
@@ -40,41 +40,38 @@ public class LoginController {
      * @return
      */
     @PostMapping("/login")
-    public Map<String,String> login(@NotNull(message = "用户名不能为null") String userName, @NotNull(message = "密码不能为null") String password){
-        Map<String,String> map = new HashMap<>();
+    public AjaxResult login(@NotNull(message = "用户名不能为null") String userName, @NotNull(message = "密码不能为null") String password){
         User user = userDetailsService.loadUserByUsername(userName);
         if (StringUtils.equals(user.getPassword(),password)) {
             String token = UUID.randomUUID().toString().replaceAll("-", "");
-//            TokenMap.getTokenMap().getMap().put(token, user);
             redisTemplate.opsForValue().set(token,user);
-            map.put("state","200");
-            map.put("token",token);
+            AjaxResult ajaxResult = AjaxResult.successData(token);
+            return ajaxResult;
         } else {
-            map.put("state","500");
+            return AjaxResult.error("密码错误");
         }
-        return map;
     }
 
-    @GetMapping("/admin/aa")
-    private String aa() {
-        return ":aaa";
+    @GetMapping("/admin/test1")
+    private AjaxResult test1() {
+        return AjaxResult.success("test1");
     }
 
-    @GetMapping("/user/aa")
-    private String userAA() {
-        return ":aaa";
+    @GetMapping("/user/test2")
+    private AjaxResult test2() {
+        return AjaxResult.success("test2");
     }
 
-    @GetMapping("/member/aa")
+    @GetMapping("/member/test3")
     @PreAuthorize("hasAnyAuthority('member')")
-    private String bb() {
-        return ":aa";
+    private AjaxResult test3() {
+        return AjaxResult.success("test3");
     }
 
-    @GetMapping("/member/bb")
+    @GetMapping("/member/test4")
     @PreAuthorize("hasAnyAuthority('admin')")
-    private String cc() {
-        return ":bb";
+    private AjaxResult test4() {
+        return AjaxResult.success("test4");
     }
 
 

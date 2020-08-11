@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // /authenticated 下的请求允许认证过的用户访问
                 .antMatchers("/authenticated/**").authenticated()
                 // 其余的请求允许所有用户无条件访问
-                 .antMatchers("/login").permitAll()
+                 .antMatchers("/login","/getConsumer").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();

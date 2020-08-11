@@ -1,5 +1,6 @@
 package com.cloud.consumer.rpc;
 
+import com.cloud.common.core.result.AjaxResult;
 import com.cloud.consumer.rpc.impl.RpcProviderImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -21,5 +22,5 @@ public interface RpcProviderService {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET, value = "/rpc/getUserInfo")
-    Map<String,String> getUserInfo(@RequestHeader(value = "Authorization") String authorization);
+    AjaxResult<Map<String,String>> getUserInfo(@RequestHeader(value = "Authorization") String authorization);
 }
