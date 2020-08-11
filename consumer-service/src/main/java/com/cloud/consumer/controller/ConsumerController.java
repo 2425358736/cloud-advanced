@@ -1,13 +1,9 @@
 package com.cloud.consumer.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.core.result.AjaxResult;
 import com.cloud.consumer.rpc.RpcProviderService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,5 +43,28 @@ public class ConsumerController {
 //        log.info(JSONObject.toJSONString(entity.getBody()));
         return rpcProviderService.getUserInfo(authorization);
     }
+
+    @GetMapping("/admin/test1")
+    public AjaxResult test1() {
+        return AjaxResult.success("test1");
+    }
+
+    @GetMapping("/user/test2")
+    public AjaxResult test2() {
+        return AjaxResult.success("test2");
+    }
+
+    @GetMapping("/testPer1")
+    @PreAuthorize("hasAnyAuthority('member')")
+    public AjaxResult testPer1() {
+        return AjaxResult.success("test3");
+    }
+
+    @GetMapping("/testPer2")
+    @PreAuthorize("hasAnyAuthority('admin')")
+    public AjaxResult testPer2() {
+        return AjaxResult.success("test4");
+    }
+
 
 }

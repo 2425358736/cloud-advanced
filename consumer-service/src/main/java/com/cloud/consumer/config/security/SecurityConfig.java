@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // /authenticated 下的请求允许认证过的用户访问
                 .antMatchers("/authenticated/**").authenticated()
                 // 其余的请求允许所有用户无条件访问
-                .antMatchers("/login", "/getConsumer").permitAll()
+                .antMatchers("/login", "/getConsumer","/my/test3").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();

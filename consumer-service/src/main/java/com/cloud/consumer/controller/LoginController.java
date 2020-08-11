@@ -7,12 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -51,28 +48,5 @@ public class LoginController {
             return AjaxResult.error("密码错误");
         }
     }
-
-    @GetMapping("/admin/test1")
-    private AjaxResult test1() {
-        return AjaxResult.success("test1");
-    }
-
-    @GetMapping("/user/test2")
-    private AjaxResult test2() {
-        return AjaxResult.success("test2");
-    }
-
-    @GetMapping("/member/test3")
-    @PreAuthorize("hasAnyAuthority('member')")
-    private AjaxResult test3() {
-        return AjaxResult.success("test3");
-    }
-
-    @GetMapping("/member/test4")
-    @PreAuthorize("hasAnyAuthority('admin')")
-    private AjaxResult test4() {
-        return AjaxResult.success("test4");
-    }
-
 
 }
