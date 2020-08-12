@@ -1,6 +1,5 @@
-package com.cloud.auth.config.exception;
+package com.cloud.auth.config.auth.exception;
 
-import com.cloud.common.core.result.AjaxResult;
 import com.cloud.common.core.result.HttpStatus;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;

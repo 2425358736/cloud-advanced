@@ -1,6 +1,6 @@
-package com.cloud.auth.config;
+package com.cloud.auth.config.auth;
 
-import com.cloud.auth.config.exception.CustomWebResponseExceptionTranslator;
+import com.cloud.auth.config.auth.exception.CustomWebResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -21,15 +21,17 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class Auth2Config extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    @Qualifier(value = "authenticationManagerBean")
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService ;
-    @Autowired
-    private TokenStore tokenStore;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailsServiceImpl userDetailsService ;
+    private final TokenStore tokenStore;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public Auth2Config(@Qualifier(value = "authenticationManagerBean") AuthenticationManager authenticationManager, UserDetailsServiceImpl userDetailsService, TokenStore tokenStore, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.tokenStore = tokenStore;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
 
     /**
