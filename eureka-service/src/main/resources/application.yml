@@ -13,7 +13,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     serviceUrl:
-      defaultZone: http://192.168.101.5:5001/eureka
+      defaultZone: http://192.168.1.25:5001/eureka
   server:
     #关闭eureka自我保护机制，修改检查失效服务的时间
     enableSelfPreservation: false
@@ -33,7 +33,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     serviceUrl:
-      defaultZone: http://192.168.101.5:5000/eureka
+      defaultZone: http://192.168.1.25:5000/eureka
   server:
     #关闭eureka自我保护机制，修改检查失效服务的时间
     enableSelfPreservation: false
