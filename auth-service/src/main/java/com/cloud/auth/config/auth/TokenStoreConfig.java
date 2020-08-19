@@ -1,4 +1,4 @@
-package com.cloud.auth.config;
+package com.cloud.auth.config.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.cloud.auth.config.exception;
+package com.cloud.auth.config.auth.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

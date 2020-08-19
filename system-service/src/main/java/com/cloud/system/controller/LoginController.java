@@ -1,8 +1,10 @@
 package com.cloud.system.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.core.domain.AuthToken;
 import com.cloud.common.core.result.AjaxResult;
 import com.cloud.system.rpc.AuthService;
+import jdk.nashorn.internal.runtime.JSONFunctions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -36,16 +38,18 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public Object login(String userName, String password) {
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.add("Authorization", "Basic Y29uc3VtZXI6MTIzNDU2");
-        requestHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        MultiValueMap<String,Object> map = new LinkedMultiValueMap<>();
-        map.add("username",userName);
-        map.add("password",password);
-        map.add("grant_type","password");
-        HttpEntity requestEntity = new HttpEntity<>(map, requestHeaders);
-        ResponseEntity<Object> entity = restTemplate.exchange("http://auth-service/oauth/token", HttpMethod.POST,requestEntity,Object.class);
-        return entity.getBody();
+    public AjaxResult login(String userName, String password) {
+//        HttpHeaders requestHeaders = new HttpHeaders();
+//        requestHeaders.add("Authorization", "Basic Y29uc3VtZXI6MTIzNDU2");
+//        requestHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//        MultiValueMap<String,Object> map = new LinkedMultiValueMap<>();
+//        map.add("username",userName);
+//        map.add("password",password);
+//        map.add("grant_type","password");
+//        HttpEntity requestEntity = new HttpEntity<>(map, requestHeaders);
+//        ResponseEntity<Object> entity = restTemplate.exchange("http://auth-service/oauth/token", HttpMethod.POST,requestEntity,Object.class);
+        String str = authService.getToken("Basic Y29uc3VtZXI6MTIzNDU2",userName,password,"password");
+        AjaxResult ajaxResult = JSONObject.parseObject(str,AjaxResult.class);
+        return ajaxResult;
     }
 }

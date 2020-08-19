@@ -1,6 +1,6 @@
-package com.cloud.auth.config;
-import com.cloud.auth.config.model.Auth;
-import com.cloud.auth.config.model.User;
+package com.cloud.auth.config.auth;
+import com.cloud.auth.config.auth.model.Auth;
+import com.cloud.auth.config.auth.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

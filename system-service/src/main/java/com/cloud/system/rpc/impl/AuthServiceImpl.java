@@ -1,6 +1,7 @@
 package com.cloud.system.rpc.impl;
 
 import com.cloud.common.core.domain.AuthToken;
+import com.cloud.common.core.result.AjaxResult;
 import com.cloud.system.rpc.AuthService;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class AuthServiceImpl implements AuthService {
 
     @Override
-    public AuthToken getToken(String authorization, String userName, String password, String grant_type) {
+    public String getToken(String authorization, String userName, String password, String grant_type) {
         return null;
     }
 

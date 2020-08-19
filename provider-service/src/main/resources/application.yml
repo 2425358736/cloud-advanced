@@ -16,7 +16,7 @@
 #    instance-id: ${spring.cloud.client.ip-address} :${server.port}
 #  client:
 #    serviceUrl:
-#      defaultZone: http://192.168.1.25:5001/eureka/,http://192.168.1.25:5000/eureka/ # 防止注册中心崩溃，向两个注册中心注册
+#      defaultZone: http://192.168.101.5:5001/eureka/,http://192.168.101.5:5000/eureka/ # 防止注册中心崩溃，向两个注册中心注册
 #
 ## 开启feign熔断
 #feign:

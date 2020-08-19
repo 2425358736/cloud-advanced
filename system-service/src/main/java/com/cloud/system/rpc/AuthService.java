@@ -2,6 +2,7 @@ package com.cloud.system.rpc;
 
 
 import com.cloud.common.core.domain.AuthToken;
+import com.cloud.common.core.result.AjaxResult;
 import com.cloud.system.rpc.impl.AuthServiceImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -26,5 +27,5 @@ public interface AuthService {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/token")
-    AuthToken getToken(@RequestHeader(value = "Authorization") String authorization, @RequestParam("username") String userName, @RequestParam("password") String password, @RequestParam("grant_type") String grant_type);
+    String getToken(@RequestHeader(value = "Authorization") String authorization, @RequestParam("username") String userName, @RequestParam("password") String password, @RequestParam("grant_type") String grant_type);
 }

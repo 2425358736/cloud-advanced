@@ -1,4 +1,4 @@
-package com.cloud.auth.config.exception;
+package com.cloud.auth.config.auth.exception;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;

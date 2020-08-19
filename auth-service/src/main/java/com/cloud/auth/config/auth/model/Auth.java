@@ -1,4 +1,4 @@
-package com.cloud.auth.config.model;
+package com.cloud.auth.config.auth.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
