@@ -15,9 +15,9 @@ spring:
           filters:
             - StripPrefix=1
             - name: Hystrix
-                args:
-                  name: default
-                  fallbackUri: forward:/defaultFallback
+              args:
+                name: default
+                fallbackUri: forward:/defaultFallback
 
 server:
   port: 5007
